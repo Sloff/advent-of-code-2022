@@ -19,37 +19,51 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package cmd
+package advent
 
 import (
-	"fmt"
+	"sort"
+	"strconv"
+	"strings"
 
-	"github.com/Sloff/advent-of-code-2022/advent"
-	"github.com/Sloff/advent-of-code-2022/utils"
 	"github.com/spf13/cobra"
 )
 
-// day1Cmd represents the day1 command
-var day1Cmd = &cobra.Command{
-	Use:   "day1",
-	Short: "Day 1 of advent of code",
-	Run: func(cmd *cobra.Command, args []string) {
-		data := utils.GetData("day1")
-		fmt.Println(advent.Day1Part1(data))
-		fmt.Println(advent.Day1Part2(data))
-	},
+func setup(data string) []int {
+	splitData := strings.Split(data, "\n")
+
+	var index int = 1
+	elves := map[int]int{}
+
+	for _, v := range splitData {
+		if _, ok := elves[index]; !ok {
+			elves[index] = 0
+		}
+
+		if strings.TrimSpace(v) == "" {
+			index++
+		} else {
+			val, err := strconv.Atoi(strings.TrimSpace(v))
+			cobra.CheckErr(err)
+			elves[index] += val
+		}
+	}
+
+	var calories []int = []int{}
+
+	for _, v := range elves {
+		calories = append(calories, v)
+	}
+
+	sort.Sort(sort.Reverse(sort.IntSlice(calories)))
+	return calories
 }
 
-func init() {
-	rootCmd.AddCommand(day1Cmd)
+func Day1Part1(data string) int {
+	return setup(data)[0]
+}
 
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// day1Cmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// day1Cmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+func Day1Part2(data string) int {
+	calories := setup(data)
+	return calories[0] + calories[1] + calories[2]
 }
