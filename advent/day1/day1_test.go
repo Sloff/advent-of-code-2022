@@ -19,12 +19,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package advent_test
+package day1_test
 
 import (
 	"testing"
 
-	"github.com/Sloff/advent-of-code-2022/advent"
+	"github.com/Sloff/advent-of-code-2022/advent/day1"
 )
 
 var data = `1000
@@ -44,7 +44,7 @@ var data = `1000
 `
 
 func TestDay1Part1(t *testing.T) {
-	result := advent.Day1Part1(data)
+	result := day1.Day1Part1(data)
 
 	if result != 24000 {
 		t.Log("should be 24000, but got", result)
@@ -53,7 +53,7 @@ func TestDay1Part1(t *testing.T) {
 }
 
 func TestDay1Part2(t *testing.T) {
-	result := advent.Day1Part2(data)
+	result := day1.Day1Part2(data)
 
 	if result != 45000 {
 		t.Log("should be 45000, but got", result)
