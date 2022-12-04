@@ -19,37 +19,33 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package cmd
+package day2_test
 
 import (
-	"fmt"
+	"testing"
 
-	"github.com/Sloff/advent-of-code-2022/advent/day1"
-	"github.com/Sloff/advent-of-code-2022/utils"
-	"github.com/spf13/cobra"
+	"github.com/Sloff/advent-of-code-2022/advent/day2"
 )
 
-// day1Cmd represents the day1 command
-var day1Cmd = &cobra.Command{
-	Use:   "day1",
-	Short: "Day 1 of advent of code",
-	Run: func(cmd *cobra.Command, args []string) {
-		data := utils.GetData("day1")
-		fmt.Println(day1.Day1Part1(data))
-		fmt.Println(day1.Day1Part2(data))
-	},
+var data = `A Y
+B X
+C Z
+`
+
+func TestDay2Part1(t *testing.T) {
+	result := day2.Day2Part1(data)
+
+	if result != 15 {
+		t.Log("should be 15, but got", result)
+		t.Fail()
+	}
 }
 
-func init() {
-	rootCmd.AddCommand(day1Cmd)
+func TestDay2Part2(t *testing.T) {
+	result := day2.Day2Part2(data)
 
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// day1Cmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// day1Cmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	if result != 12 {
+		t.Log("should be 12, but got", result)
+		t.Fail()
+	}
 }

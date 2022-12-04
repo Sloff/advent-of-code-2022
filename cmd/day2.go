@@ -24,24 +24,24 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/Sloff/advent-of-code-2022/advent/day1"
+	"github.com/Sloff/advent-of-code-2022/advent/day2"
 	"github.com/Sloff/advent-of-code-2022/utils"
 	"github.com/spf13/cobra"
 )
 
 // day1Cmd represents the day1 command
-var day1Cmd = &cobra.Command{
-	Use:   "day1",
-	Short: "Day 1 of advent of code",
+var day2Cmd = &cobra.Command{
+	Use:   "day2",
+	Short: "Day 2 of advent of code",
 	Run: func(cmd *cobra.Command, args []string) {
-		data := utils.GetData("day1")
-		fmt.Println(day1.Day1Part1(data))
-		fmt.Println(day1.Day1Part2(data))
+		data := utils.GetData("day2")
+		fmt.Println(day2.Day2Part1(data))
+		fmt.Println(day2.Day2Part2(data))
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(day1Cmd)
+	rootCmd.AddCommand(day2Cmd)
 
 	// Here you will define your flags and configuration settings.
 
