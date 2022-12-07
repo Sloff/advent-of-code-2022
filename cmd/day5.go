@@ -29,7 +29,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// day1Cmd represents the day1 command
+// day5Cmd represents the day5 command
 var day5Cmd = &cobra.Command{
 	Use:   "day5",
 	Short: "Day 5 of advent of code",
