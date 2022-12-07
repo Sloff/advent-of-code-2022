@@ -19,52 +19,27 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package day7_test
+package cmd
 
 import (
-	"testing"
+	"fmt"
 
 	"github.com/Sloff/advent-of-code-2022/advent/day7"
+	"github.com/Sloff/advent-of-code-2022/utils"
+	"github.com/spf13/cobra"
 )
 
-var data = `$ cd /
-$ ls
-dir a
-14848514 b.txt
-8504156 c.dat
-dir d
-$ cd a
-$ ls
-dir e
-29116 f
-2557 g
-62596 h.lst
-$ cd e
-$ ls
-584 i
-$ cd ..
-$ cd ..
-$ cd d
-$ ls
-4060174 j
-8033020 d.log
-5626152 d.ext
-7214296 k`
-
-func TestDay7Part1(t *testing.T) {
-	result := day7.Day7Part1(data)
-
-	if result != 95437 {
-		t.Log("should be 95437, but got", result)
-		t.Fail()
-	}
+// day1Cmd represents the day1 command
+var day7Cmd = &cobra.Command{
+	Use:   "day7",
+	Short: "Day 7 of advent of code",
+	Run: func(cmd *cobra.Command, args []string) {
+		data := utils.GetData("day7")
+		fmt.Println(day7.Day7Part1(data))
+		fmt.Println(day7.Day7Part2(data))
+	},
 }
 
-func TestDay7Part2(t *testing.T) {
-	result := day7.Day7Part2(data)
-
-	if result != 24933642 {
-		t.Log("should be 24933642, but got", result)
-		t.Fail()
-	}
+func init() {
+	rootCmd.AddCommand(day7Cmd)
 }
